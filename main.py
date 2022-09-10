@@ -16,10 +16,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='loligstats: League of Legends stats client')
     parser.add_argument('-t', '--token',
                         help='Token to access the API')
+    parser.add_argument('-r', '--region',
+                        help='Region to target')
     args = parser.parse_args()
 
     token = get_token_from_cfg('loligstats.ini')
     if args.token:
         token = args.token
 
-    stats = loligstats.LolIgStats(token)
+    stats = loligstats.LolIgStats(token, loligstats.LolRegions.EUW)
