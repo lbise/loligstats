@@ -7,13 +7,15 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 class LolRegions(Enum):
-    EUW = 1
+    EUW = 0
 
 
 class LolIgStats(object):
     def __init__(self, token, region):
         assert isinstance(region, LolRegions), 'Region must be a LolRegions instance'
 
-        self.factory = factory.Factory(token, region)
+        self.factory = factory.Factory(region, token)
         logger.info(f'token: {token} region: {region}')
+
+        self.factory.get_summoner('Leodido')
 
